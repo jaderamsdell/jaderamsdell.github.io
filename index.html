@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jade Ramsdell — Public Health Consultant & Performance Improvement Director</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B2A;
+    --deep: #162032;
+    --teal: #1A6B6B;
+    --teal-light: #2A9090;
+    --gold: #C8974A;
+    --gold-light: #E5B870;
+    --cream: #F5F0E8;
+    --warm-white: #FAF7F2;
+    --text: #1C2B3A;
+    --muted: #6B7A8D;
+    --border: rgba(200,151,74,0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,27,42,0.96);
+    backdrop-filter: blur(12px);
+    padding: 0 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    border-bottom: 1px solid rgba(200,151,74,0.2);
+  }
+  .nav-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.08em;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none;
+    color: rgba(245,240,232,0.7);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(26,107,107,0.18) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(200,151,74,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-grid-lines {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image: 
+      linear-gradient(rgba(200,151,74,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,151,74,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 4rem 6rem 6rem;
+    position: relative; z-index: 2;
+  }
+  .hero-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-tag::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 300; line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+  .hero-name strong { font-weight: 600; color: var(--gold-light); }
+  .hero-creds {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem; color: rgba(245,240,232,0.5);
+    letter-spacing: 0.1em; margin-bottom: 2.5rem;
+  }
+  .hero-title {
+    font-size: 1.05rem; font-weight: 300;
+    color: rgba(245,240,232,0.8);
+    line-height: 1.6; max-width: 480px;
+    margin-bottom: 3rem;
+  }
+  .hero-title em { color: var(--teal-light); font-style: normal; font-weight: 500; }
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; max-width: 480px;
+  }
+  .stat-box {
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; font-weight: 600;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.7rem; color: rgba(245,240,232,0.5);
+    margin-top: 0.25rem; line-height: 1.3;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+  .hero-right {
+    display: flex; flex-direction: column; justify-content: center; align-items: flex-end;
+    padding: 8rem 6rem 6rem 2rem;
+    position: relative; z-index: 2;
+  }
+  .hero-card {
+    background: rgba(22,32,50,0.7);
+    border: 1px solid rgba(200,151,74,0.2);
+    border-radius: 2px;
+    padding: 2.5rem; max-width: 380px; width: 100%;
+  }
+  .hero-card-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+  }
+  .pill-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .pill {
+    background: rgba(26,107,107,0.2);
+    border: 1px solid rgba(42,144,144,0.3);
+    color: var(--teal-light);
+    padding: 0.35rem 0.85rem;
+    border-radius: 2px;
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .hero-contact {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem; color: rgba(245,240,232,0.5);
+    line-height: 2;
+    letter-spacing: 0.04em;
+  }
+  .hero-contact a { color: var(--gold-light); text-decoration: none; }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 0; }
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 3rem; }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    font-weight: 300; color: var(--navy);
+    line-height: 1.15; margin-bottom: 3rem;
+  }
+
+  /* ── ABOUT / SUMMARY ── */
+  .about-section { background: var(--warm-white); }
+  .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 5rem; align-items: start; }
+  .about-text { font-size: 1.08rem; line-height: 1.8; color: var(--text); }
+  .about-text p { margin-bottom: 1.25rem; }
+  .about-sidebar {}
+  .sidebar-item {
+    border-left: 2px solid var(--gold);
+    padding: 1rem 0 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .sidebar-item-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 0.4rem;
+  }
+  .sidebar-item-value {
+    font-size: 0.92rem; font-weight: 500; color: var(--navy);
+  }
+
+  /* ── EXPERIENCE ── */
+  .experience-section { background: var(--cream); }
+  .exp-grid { display: flex; flex-direction: column; gap: 0; }
+  .exp-item {
+    display: grid; grid-template-columns: 200px 1fr;
+    gap: 0 3rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(200,151,74,0.15);
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .exp-item.visible { opacity: 1; transform: translateY(0); }
+  .exp-meta {}
+  .exp-dates {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem; color: var(--teal);
+    letter-spacing: 0.05em; font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .exp-org {
+    font-size: 0.82rem; color: var(--muted);
+    line-height: 1.4;
+  }
+  .exp-content {}
+  .exp-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600;
+    color: var(--navy); margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+  .exp-bullets { list-style: none; }
+  .exp-bullets li {
+    font-size: 0.9rem; line-height: 1.65;
+    color: var(--text); padding-left: 1.1rem;
+    position: relative; margin-bottom: 0.4rem;
+  }
+  .exp-bullets li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--gold); font-size: 0.75rem; top: 0.05em;
+  }
+  .exp-badge {
+    display: inline-block;
+    background: var(--navy); color: var(--gold-light);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem; border-radius: 2px;
+    margin-top: 0.75rem;
+  }
+
+  /* ── GRANTS ── */
+  .grants-section { background: var(--navy); }
+  .grants-section .section-heading { color: var(--cream); }
+  .grants-section .section-label { color: var(--gold); }
+  .grants-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .grant-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(200,151,74,0.15);
+    padding: 2rem;
+    position: relative; overflow: hidden;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .grant-card:hover {
+    border-color: rgba(200,151,74,0.4);
+    background: rgba(255,255,255,0.07);
+  }
+  .grant-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1; margin-bottom: 0.75rem;
+  }
+  .grant-name {
+    font-size: 0.88rem; font-weight: 500;
+    color: var(--cream); line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+  .grant-agency {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.08em;
+    color: var(--teal-light);
+  }
+  .grant-dates {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem; color: rgba(245,240,232,0.35);
+    margin-top: 0.5rem;
+  }
+  .grants-total {
+    border-top: 1px solid var(--border);
+    margin-top: 2.5rem; padding-top: 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .grants-total-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+  }
+  .grants-total-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 300; color: var(--gold-light);
+  }
+
+  /* ── IMPACT / FRAMEWORKS ── */
+  .frameworks-section { background: var(--warm-white); }
+  .fw-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .fw-card {
+    border: 1px solid rgba(26,107,107,0.2);
+    padding: 2rem; background: white;
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  .fw-card:hover { box-shadow: 0 8px 30px rgba(26,107,107,0.1); transform: translateY(-3px); }
+  .fw-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 600;
+    color: var(--teal); margin-bottom: 0.25rem;
+  }
+  .fw-full {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem; color: var(--muted);
+    letter-spacing: 0.04em; line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+  .fw-desc { font-size: 0.85rem; line-height: 1.65; color: var(--text); }
+
+  /* ── SELECTED PRESENTATIONS ── */
+  .talks-section { background: var(--cream); }
+  .talks-list { display: flex; flex-direction: column; gap: 0; }
+  .talk-item {
+    display: grid; grid-template-columns: 100px 1fr;
+    gap: 0 2.5rem; padding: 1.75rem 0;
+    border-bottom: 1px solid rgba(200,151,74,0.15);
+    align-items: start;
+  }
+  .talk-year {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 300;
+    color: rgba(13,27,42,0.2);
+    line-height: 1;
+  }
+  .talk-title {
+    font-size: 0.95rem; font-weight: 500;
+    color: var(--navy); margin-bottom: 0.3rem;
+    line-height: 1.4;
+  }
+  .talk-meta {
+    font-size: 0.78rem; color: var(--muted);
+  }
+  .talk-type {
+    display: inline-block;
+    border: 1px solid var(--border);
+    color: var(--gold);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem; letter-spacing: 0.1em;
+    padding: 0.15rem 0.5rem;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+
+  /* ── TEACHING ── */
+  .teaching-section { background: var(--navy); }
+  .teaching-section .section-heading { color: var(--cream); }
+  .teaching-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .teaching-card {
+    border-top: 2px solid var(--teal);
+    padding: 1.75rem 0 0;
+  }
+  .teaching-inst {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 600;
+    color: var(--cream); margin-bottom: 0.5rem;
+  }
+  .teaching-course {
+    font-size: 0.8rem; color: rgba(245,240,232,0.6);
+    line-height: 1.5; margin-bottom: 0.5rem;
+  }
+  .teaching-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem; color: var(--gold);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── HONORS ── */
+  .honors-section { background: var(--warm-white); }
+  .honors-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .honor-item {
+    display: flex; gap: 1.25rem; align-items: flex-start;
+    padding: 1.5rem;
+    border: 1px solid rgba(200,151,74,0.15);
+    background: white;
+  }
+  .honor-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem; color: var(--gold);
+    font-weight: 700; min-width: 40px; padding-top: 0.1rem;
+  }
+  .honor-name {
+    font-size: 0.92rem; font-weight: 500;
+    color: var(--navy); margin-bottom: 0.2rem;
+  }
+  .honor-org { font-size: 0.8rem; color: var(--muted); }
+
+  /* ── LEADERSHIP ── */
+  .leadership-section { background: var(--cream); }
+  .leadership-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .leadership-col-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(26,107,107,0.2);
+    padding-bottom: 0.75rem;
+  }
+  .lead-item { margin-bottom: 1.1rem; }
+  .lead-org { font-size: 0.88rem; font-weight: 500; color: var(--navy); margin-bottom: 0.1rem; }
+  .lead-role { font-size: 0.78rem; color: var(--muted); }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--teal);
+    padding: 5rem 0; text-align: center;
+  }
+  .cta-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300; color: white;
+    margin-bottom: 1rem;
+  }
+  .cta-sub {
+    font-size: 1rem; color: rgba(255,255,255,0.75);
+    margin-bottom: 2.5rem;
+  }
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; text-decoration: none;
+    padding: 0.85rem 2.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-secondary {
+    border: 1px solid rgba(255,255,255,0.4); color: white;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    padding: 2rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(200,151,74,0.15);
+  }
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--gold-light); font-size: 1rem;
+  }
+  .footer-copy {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem; color: rgba(245,240,232,0.3);
+    letter-spacing: 0.08em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-left > * {
+    opacity: 0; animation: fadeUp 0.7s forwards;
+  }
+  .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-left > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-left > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-left > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-left > *:nth-child(5) { animation-delay: 0.5s; }
+  .hero-right {
+    opacity: 0; animation: fadeUp 0.7s 0.6s forwards;
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 7rem 2rem 4rem; }
+    .about-grid, .fw-grid, .teaching-grid, .grants-grid { grid-template-columns: 1fr; }
+    .honors-grid, .leadership-cols { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    nav { padding: 0 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.58rem; }
+    .container { padding: 0 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-name">Jade Ramsdell</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#grants">Grants</a>
+    <a href="#expertise">Expertise</a>
+    <a href="#projects">Projects</a>
+    <a href="#frameworks">Frameworks</a>
+    <a href="#talks">Talks</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid-lines"></div>
+  <div class="hero-left">
+    <div class="hero-tag">Public Health · Strategy · Performance</div>
+    <h1 class="hero-name">Jade<br><strong>Ramsdell</strong></h1>
+    <div class="hero-creds">MBA · LSSGB · CDP · CQ</div>
+    <p class="hero-title">
+      Public health systems architect designing the <em>governance, infrastructure, and performance systems</em> that make large-scale public health investment work — and last.
+    </p>
+    <div class="hero-stats">
+      <div class="stat-box">
+        <div class="stat-num">$65M+</div>
+        <div class="stat-label">Grants Directed</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">800+</div>
+        <div class="stat-label">Professionals Trained</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">97%</div>
+        <div class="stat-label">Satisfaction Rate</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hero-card-title">Areas of Expertise</div>
+      <div class="pill-grid">
+        <span class="pill">PHIG / Infrastructure</span>
+        <span class="pill">Community Health</span>
+        <span class="pill">Performance Improvement</span>
+        <span class="pill">QI / Lean Six Sigma</span>
+        <span class="pill">Grant Administration</span>
+        <span class="pill">Workforce Development</span>
+        <span class="pill">Community Engagement</span>
+        <span class="pill">Data Governance</span>
+        <span class="pill">CLAS Standards</span>
+        <span class="pill">Policy Analysis</span>
+        <span class="pill">Strategic Planning</span>
+        <span class="pill">Program Management</span>
+        <span class="pill">Curriculum Design</span>
+        <span class="pill">Org Assessment</span>
+      </div>
+      <div class="hero-contact">
+        Kansas / Remote<br>
+        785-213-7981<br>
+        <a href="mailto:jaderamsdell@outlook.com">jaderamsdell@outlook.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="section-label">Profile</div>
+    <h2 class="section-heading">Systems Leader.<br>Public Health Architect.</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I am a public health systems architect and program management strategist with deep expertise in building, scaling, and sustaining the infrastructure that makes public health work. As Performance Improvement Director at the Kansas Department of Health and Environment, I direct post-award administration of over $64M in federally funded public health grants — including the CDC Public Health Infrastructure Grant and the COVID-19 Community Health Initiative.</p>
+        
+        <p>My work spans performance management system design, CLAS implementation, language access infrastructure, workforce planning, data modernization, and multi-funder grant compliance. I design the systems, build the governance structures, and deliver the evidence that makes public health investment defensible — and durable.</p>
+      </div>
+      <div class="about-sidebar">
+        <div class="sidebar-item">
+          <div class="sidebar-item-label">Current Roles</div>
+          <div class="sidebar-item-value">PHF Consultant · Performance Improvement Director, KDHE</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-item-label">Education</div>
+          <div class="sidebar-item-value">MBA — Baker University<br>B.HSA — Washburn University</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-item-label">Credentials</div>
+          <div class="sidebar-item-value">LSSGB · Certified Diversity Professional® · CQ Credential</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-item-label">Location</div>
+          <div class="sidebar-item-value">Wichita &amp; Topeka, Kansas<br>Washington, DC (Remote)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience-section" id="experience">
+  <div class="container">
+    <div class="section-label">Career</div>
+    <h2 class="section-heading">Professional<br>Experience</h2>
+    <div class="exp-grid">
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates">2024 – Present</div>
+          <div class="exp-org">Public Health Foundation<br>Washington, DC</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Public Health Consultant</div>
+          <ul class="exp-bullets">
+            <li>Partner with governmental public health agencies to advance core public health mission at state, local, and tribal levels.</li>
+            <li>Design and implement performance improvement initiatives resulting in 20% increase in operational efficiency.</li>
+            <li>Lead Health Operations and Assessment Planning (HOAP) design, environmental scans, and organizational capacity assessments.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates">2023 – Present</div>
+          <div class="exp-org">Independent Consulting Practice<br>Kansas (National)</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Independent Consultant</div>
+          <ul class="exp-bullets">
+            <li>Deliver strategy consulting in public and population health, organizational development, and community engagement.</li>
+            <li>Develop original frameworks, assessment tools, and evaluation models for health departments and CBOs.</li>
+            <li>Lead multi-phase environmental scan project for a northeastern local health department.</li>
+          </ul>
+          
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates">2021 – Present</div>
+          <div class="exp-org">Kansas Dept. of Health &amp; Environment<br>Topeka, KS</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Performance Improvement Director</div>
+          <ul class="exp-bullets">
+            <li>Direct post-award administration of federally sponsored grants exceeding $64M, including CDC PHIG ($33M) and COVID-19 Community Health Initiative ($31M).</li>
+            <li>Lead data analytics and governance team synthesizing public health data to support the statewide health improvement plan.</li>
+            <li>Increased reporting accuracy by 15% through enhanced evaluation capacity and data modernization.</li>
+            <li>Serve as Kansas's Healthy People State and Territorial Coordinator with HHS (2022–Present).</li>
+          </ul>
+          <span class="exp-badge">PI on $65M+ Portfolio</span>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates">2020 – 2021</div>
+          <div class="exp-org">Stormont Vail Health<br>Topeka, KS</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">HRIS Analyst</div>
+          <ul class="exp-bullets">
+            <li>Implemented strategic talent solutions, enhancing workforce planning and HR program efficiency by 15%.</li>
+            <li>Led continuous improvement initiatives around organizational culture and employee engagement.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates">2018</div>
+          <div class="exp-org">Kansas Neurological Institute<br>Topeka, KS</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Director of Habilitation Services</div>
+          <ul class="exp-bullets">
+            <li>Directed multidisciplinary team responsible for 150+ client caseload, integrating OT, PT, and assistive technology.</li>
+            <li>Designed and delivered L&amp;D solutions to mentor staff in person-centered care.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GRANTS -->
+<section class="grants-section" id="grants">
+  <div class="container">
+    <div class="section-label" style="color:var(--gold)">Grant Portfolio</div>
+    <h2 class="section-heading">Principal Investigator —<br>$65M+ in Federal Funding</h2>
+    <div class="grants-grid">
+      <div class="grant-card">
+        <div class="grant-amount">$33M</div>
+        <div class="grant-name">Strengthening U.S. Public Health Infrastructure, Workforce &amp; Data Systems (PHIG)</div>
+        <div class="grant-agency">CDC — Centers for Disease Control &amp; Prevention</div>
+        <div class="grant-dates">2022–2023 · 2025–Present</div>
+      </div>
+      <div class="grant-card">
+        <div class="grant-amount">$31M</div>
+        <div class="grant-name">National Initiative to Address COVID-19 Community Health Disparities</div>
+        <div class="grant-agency">CDC — Centers for Disease Control &amp; Prevention</div>
+        <div class="grant-dates">2022–Present</div>
+      </div>
+      <div class="grant-card">
+        <div class="grant-amount">$1M</div>
+        <div class="grant-name">Environmental Justice Government-to-Government Program</div>
+        <div class="grant-agency">U.S. Environmental Protection Agency</div>
+        <div class="grant-dates">2023–2025</div>
+      </div>
+      <div class="grant-card">
+        <div class="grant-amount">$125K</div>
+        <div class="grant-name">Closing the Gap with Social Determinants of Health Accelerator Plans</div>
+        <div class="grant-agency">CDC — Centers for Disease Control &amp; Prevention</div>
+        <div class="grant-dates">2022–2024</div>
+      </div>
+    </div>
+    <div class="grants-total">
+      <span class="grants-total-label">Total Grant Portfolio Directed</span>
+      <span class="grants-total-num">$65,125,000+</span>
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORKS -->
+<section class="frameworks-section" id="frameworks">
+  <div class="container">
+    <div class="section-label">Original Methods</div>
+    <h2 class="section-heading">Frameworks &amp;<br>Tools Developed</h2>
+    <div class="fw-grid">
+      <div class="fw-card">
+        <div class="fw-name">AWARE</div>
+        <div class="fw-full">Advocacy · Wellness Initiatives · Access to Resources · Resilience-Building · Education</div>
+        <div class="fw-desc">Community-centered framework for navigating equitable health resource allocation and systems change across racial, ethnic, and rural populations.</div>
+      </div>
+      <div class="fw-card">
+        <div class="fw-name">CIVIIQ</div>
+        <div class="fw-full">Civic Influence &amp; Impact Quotient</div>
+        <div class="fw-desc">Measurement framework assessing civic engagement and its relationship to public health outcomes and democratic participation.</div>
+      </div>
+      <div class="fw-card">
+        <div class="fw-name">IETM</div>
+        <div class="fw-full">Integrated Ecosystem Transformation Model</div>
+        <div class="fw-desc">Systems approach for aligning community, policy, infrastructure, and public health outcomes through ecosystem-level intervention planning.</div>
+      </div>
+      <div class="fw-card">
+        <div class="fw-name">CLUE STRIKE</div>
+        <div class="fw-full">Case-based Learning &amp; Unified Execution for Sustainability, Tracking, Rapid Improvement, Knowledge &amp; Execution</div>
+        <div class="fw-desc">Collaborative implementation model supporting continuous improvement and cross-sector public health initiatives.</div>
+      </div>
+      <div class="fw-card">
+        <div class="fw-name">Search Momentum</div>
+        <div class="fw-full">Strategic Priority Identification Framework</div>
+        <div class="fw-desc">Strategic approach for identifying emerging public health priorities through behavioral, information-seeking, and environmental signal analysis.</div>
+      </div>
+      <div class="fw-card" style="border-color:rgba(200,151,74,0.2); background: rgba(200,151,74,0.04);">
+        <div class="fw-name" style="color:var(--gold);">+ More</div>
+        <div class="fw-full">Portfolio continues to expand</div>
+        <div class="fw-desc">Additional frameworks, decision tools, and assessment models developed for client engagements — available upon request.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TALKS -->
+<section class="talks-section" id="talks">
+  <div class="container">
+    <div class="section-label">Thought Leadership</div>
+    <h2 class="section-heading">Selected Presentations<br>&amp; Publications</h2>
+    <div class="talks-list">
+      <div class="talk-item">
+        <div class="talk-year">2026</div>
+        <div>
+          <div class="talk-title">Leading CQI in Public Health — Graduate Lecture<span class="talk-type">Instruction</span></div>
+          <div class="talk-meta">UNC Chapel Hill, Gillings School of Global Public Health · PUBH 730 · Feb 2026</div>
+        </div>
+      </div>
+      <div class="talk-item">
+        <div class="talk-year">2025</div>
+        <div>
+          <div class="talk-title">From the Ground Up: PHIG in Action in Kansas<span class="talk-type">Podcast</span></div>
+          <div class="talk-meta">ASTHO PHIG Impact Report Series · Nov 2025</div>
+        </div>
+      </div>
+      <div class="talk-item">
+        <div class="talk-year">2024</div>
+        <div>
+          <div class="talk-title">Equitable Allocation: The AWARE Framework<span class="talk-type">Oral Presentation</span></div>
+          <div class="talk-meta">APHA Annual Meeting · Minneapolis, MN · Oct 27, 2024</div>
+        </div>
+      </div>
+      <div class="talk-item">
+        <div class="talk-year">2024</div>
+        <div>
+          <div class="talk-title">"Say What, Say Huh?": Bi-Directional Communication Across Communities<span class="talk-type">Presentation + Podcast</span></div>
+          <div class="talk-meta">ASTHO · Virtual · Oct 2024</div>
+        </div>
+      </div>
+      <div class="talk-item">
+        <div class="talk-year">2024</div>
+        <div>
+          <div class="talk-title">CommUNITY Synergy: Forging Pathways to Inclusive Health Improvement<span class="talk-type">Oral Presentation</span></div>
+          <div class="talk-meta">NACCHO 360 Conference · Detroit, MI · Jul 25, 2024</div>
+        </div>
+      </div>
+      <div class="talk-item">
+        <div class="talk-year">2024</div>
+        <div>
+          <div class="talk-title">KDHE CLAS Program — National Minority Health Month Webinar<span class="talk-type">Oral Presentation</span></div>
+          <div class="talk-meta">U.S. HHS · Virtual · May 8, 2024</div>
+        </div>
+      </div>
+      <div class="talk-item">
+        <div class="talk-year">2024</div>
+        <div>
+          <div class="talk-title">STRETCH-ing for Health: Operationalizing Systems Change<span class="talk-type">Interview</span></div>
+          <div class="talk-meta">ASTHO Blog &amp; Podcast · Feb 2024</div>
+        </div>
+      </div>
+      <div class="talk-item">
+        <div class="talk-year">2023</div>
+        <div>
+          <div class="talk-title">Culturally Connected Care: KDHE's CLAS Standards<span class="talk-type">Poster</span></div>
+          <div class="talk-meta">Kansas Health Summit (KFMC) · Topeka, KS · Oct 2023</div>
+        </div>
+      </div>
+      <div class="talk-item">
+        <div class="talk-year">2023</div>
+        <div>
+          <div class="talk-title">Workforce Development &amp; PHIG: What You Need to Know<span class="talk-type">Oral Presentation</span></div>
+          <div class="talk-meta">Kansas Association of Local Health Departments · Salina, KS · Jun 2023</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHING -->
+<section class="teaching-section" id="teaching">
+  <div class="container">
+    <div class="section-label" style="color:var(--gold)">Academic Engagement</div>
+    <h2 class="section-heading">University Instruction<br>&amp; Guest Lectures</h2>
+    <div class="teaching-grid">
+      <div class="teaching-card">
+        <div class="teaching-inst">UNC Chapel Hill</div>
+        <div class="teaching-course">Gillings School of Global Public Health · PUBH 730: Leading CQI in Public Health</div>
+        <div class="teaching-date">Feb 2026</div>
+      </div>
+      <div class="teaching-card">
+        <div class="teaching-inst">Wichita State University</div>
+        <div class="teaching-course">Foundations of Public Health Program — Systems, Performance Management &amp; Leadership</div>
+        <div class="teaching-date">May 2025</div>
+      </div>
+      <div class="teaching-card">
+        <div class="teaching-inst">Ohio University</div>
+        <div class="teaching-course">Project ECHO — Advanced Prevention Practice Series: Cultural Humility &amp; Community-Centered Practice</div>
+        <div class="teaching-date">May 2025</div>
+      </div>
+      <div class="teaching-card">
+        <div class="teaching-inst">Univ. of Kansas Medical Center</div>
+        <div class="teaching-course">PRVM 851: Health Policy &amp; Law — Applied Instruction on Policy, Law &amp; Legislative Experience</div>
+        <div class="teaching-date">Feb 2024 · Feb 2025</div>
+      </div>
+      <div class="teaching-card">
+        <div class="teaching-inst">University of Kansas</div>
+        <div class="teaching-course">Emerging Leaders Academy — Inclusive Leadership for Emerging Leaders</div>
+        <div class="teaching-date">Sep 2024</div>
+      </div>
+      <div class="teaching-card">
+        <div class="teaching-inst">Ohio Society for Public Health Education (Ohio SOPHE)</div>
+        <div class="teaching-course">Quarterly Meeting — Workforce Well-Being, Leadership &amp; Community Impact</div>
+        <div class="teaching-date">Mar 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HONORS -->
+<section class="honors-section" id="honors">
+  <div class="container">
+    <div class="section-label">Recognition</div>
+    <h2 class="section-heading">Honors &amp; Awards</h2>
+    <div class="honors-grid">
+      <div class="honor-item">
+        <div class="honor-year">2024</div>
+        <div>
+          <div class="honor-name">YWCA Women of Excellence Honoree</div>
+          <div class="honor-org">Northeast Kansas</div>
+        </div>
+      </div>
+      <div class="honor-item">
+        <div class="honor-year">2023</div>
+        <div>
+          <div class="honor-name">Leadership Greater Topeka Graduate</div>
+          <div class="honor-org">Greater Topeka Partnership</div>
+        </div>
+      </div>
+      <div class="honor-item">
+        <div class="honor-year">2022</div>
+        <div>
+          <div class="honor-name">NextGen Under 30 — Policy &amp; Government</div>
+          <div class="honor-org">Kansas Department of Commerce</div>
+        </div>
+      </div>
+      <div class="honor-item">
+        <div class="honor-year">2022</div>
+        <div>
+          <div class="honor-name">Gender Inclusion Learning Exchange Fellow</div>
+          <div class="honor-org">Apolitical &amp; Robert Wood Johnson Foundation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section class="leadership-section" id="leadership">
+  <div class="container">
+    <div class="section-label">Civic &amp; Professional Service</div>
+    <h2 class="section-heading">Boards, Commissions<br>&amp; National Affiliations</h2>
+    <div class="leadership-cols">
+      <div>
+        <div class="leadership-col-title">National</div>
+        <div class="lead-item">
+          <div class="lead-org">NASOMH</div>
+          <div class="lead-role">Board Member · 2024–2026</div>
+        </div>
+        <div class="lead-item">
+          <div class="lead-org">Cornell Health Impacts Strategic Skills WG</div>
+          <div class="lead-role">Member · 2025–Present</div>
+        </div>
+        <div class="lead-item">
+          <div class="lead-org">AMCHP Health Systems Committee</div>
+          <div class="lead-role">Member · 2024–Present</div>
+        </div>
+        <div class="lead-item">
+          <div class="lead-org">HHS OASH Region 7 Health Systems Workgroup</div>
+          <div class="lead-role">Member · 2023–Present</div>
+        </div>
+        <div class="lead-item">
+          <div class="lead-org">Healthy People State &amp; Territorial Coordinator</div>
+          <div class="lead-role">HHS · 2022–Present</div>
+        </div>
+        <div class="lead-item">
+          <div class="lead-org">Power of Partnerships Health Systems Alliance</div>
+          <div class="lead-role">ASTHO/CDC/NASOMH · 2023–2024</div>
+        </div>
+      </div>
+      <div>
+        <div class="leadership-col-title">State — Kansas</div>
+        <div class="lead-item">
+          <div class="lead-org">Kansas African American Affairs Commission</div>
+          <div class="lead-role">Commissioner, 2nd District · 2025–Present</div>
+        </div>
+        <div class="lead-item">
+          <div class="lead-org">KDHE Institutional Review Board</div>
+          <div class="lead-role">Community Representative · 2025–Present</div>
+        </div>
+        <div class="lead-item">
+          <div class="lead-org">Kansas Maternal Mortality Review Committee</div>
+          <div class="lead-role">Public Member · 2024–Present</div>
+        </div>
+        <div class="lead-item">
+          <div class="lead-org">The 802 United</div>
+          <div class="lead-role">Board Member · 2024–Present</div>
+        </div>
+        <div class="lead-item">
+          <div class="lead-org">Kansas State Board of Nursing</div>
+          <div class="lead-role">Public Member · 2019–2022</div>
+        </div>
+      </div>
+      <div>
+        <div class="leadership-col-title">Local &amp; Community</div>
+        <div class="lead-item">
+          <div class="lead-org">Leadership Greater Topeka Alumni</div>
+          <div class="lead-role">Greater Topeka Partnership · 2023–Present</div>
+        </div>
+        <div class="lead-item">
+          <div class="lead-org">Topeka Housing Authority</div>
+          <div class="lead-role">Board Commissioner · 2023–2024</div>
+        </div>
+        <div class="lead-item">
+          <div class="lead-org">Bright Circle Preschool, Inc.</div>
+          <div class="lead-role">Public Board Member · 2021–2023</div>
+        </div>
+        <div class="lead-item">
+          <div class="lead-org">Jayhawk Area Agency on Aging Advisory Council</div>
+          <div class="lead-role">Member · 2019–2020</div>
+        </div>
+        <div class="lead-item">
+          <div class="lead-org">Preventive Health &amp; Human Services Advisory Committee</div>
+          <div class="lead-role">KDHE · 2022–Present</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEST-FIT ROLES -->
+<section style="background:var(--navy); padding:5rem 0;">
+  <div class="container">
+    <div class="section-label" style="color:var(--gold);">Where I Fit Best</div>
+    <h2 class="section-heading" style="color:var(--cream);">Target Roles &amp;<br>Engagement Types</h2>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:3rem;">
+      <!-- col 1 -->
+      <div>
+        <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--teal-light); margin-bottom:1rem; border-bottom:1px solid rgba(42,144,144,0.2); padding-bottom:0.5rem;">Government / Agency</div>
+        <div style="font-size:0.88rem; color:var(--cream); line-height:2.1;">
+          Director of Program Management<br>
+          Deputy Director, Public Health Operations<br>
+          Chief of Performance Improvement<br>
+          Chief Strategy Officer (State Agency)<br>
+          Senior Federal Program Manager (HHS, CDC, EPA)
+        </div>
+      </div>
+      <!-- col 2 -->
+      <div>
+        <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--teal-light); margin-bottom:1rem; border-bottom:1px solid rgba(42,144,144,0.2); padding-bottom:0.5rem;">Nonprofit / Foundation</div>
+        <div style="font-size:0.88rem; color:var(--cream); line-height:2.1;">
+          VP of Strategy &amp; Operations<br>
+          Director of Workforce Development<br>
+          Program Director (Health &amp; Systems)<br>
+          Director of Learning &amp; Impact<br>
+          Senior Advisor, Public Health Practice
+        </div>
+      </div>
+      <!-- col 3 -->
+      <div>
+        <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--teal-light); margin-bottom:1rem; border-bottom:1px solid rgba(42,144,144,0.2); padding-bottom:0.5rem;">Consulting / TA</div>
+        <div style="font-size:0.88rem; color:var(--cream); line-height:2.1;">
+          
+          Senior TA Advisor (PHF, ASTHO, NNPHI)<br>
+          Organizational Assessment Lead<br>
+          Curriculum Architect &amp; Facilitator<br>
+          Keynote Speaker / Faculty (Graduate Level)
+        </div>
+      </div>
+    </div>
+    <!-- impact bar -->
+    <div style="display:grid; grid-template-columns:repeat(6,1fr); gap:1rem; border-top:1px solid rgba(200,151,74,0.15); padding-top:2.5rem;">
+      <div style="text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--gold-light);">$65M+</div>
+        <div style="font-family:'Space Mono',monospace; font-size:0.55rem; color:rgba(245,240,232,0.4); letter-spacing:0.08em;">Grant Portfolio</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--gold-light);">800+</div>
+        <div style="font-family:'Space Mono',monospace; font-size:0.55rem; color:rgba(245,240,232,0.4); letter-spacing:0.08em;">Trained Across 7+ States</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--gold-light);">97%</div>
+        <div style="font-family:'Space Mono',monospace; font-size:0.55rem; color:rgba(245,240,232,0.4); letter-spacing:0.08em;">Satisfaction Rate</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--gold-light);">40%</div>
+        <div style="font-family:'Space Mono',monospace; font-size:0.55rem; color:rgba(245,240,232,0.4); letter-spacing:0.08em;">Workflow Improvement</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--gold-light);">15+</div>
+        <div style="font-family:'Space Mono',monospace; font-size:0.55rem; color:rgba(245,240,232,0.4); letter-spacing:0.08em;">Frameworks in Active Use</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--gold-light);">25+</div>
+        <div style="font-family:'Space Mono',monospace; font-size:0.55rem; color:rgba(245,240,232,0.4); letter-spacing:0.08em;">National Engagements</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section style="background:var(--navy); padding:6rem 0;" id="projects">
+  <div class="container">
+    <div class="section-label" style="color:var(--gold)">Career Timeline</div>
+    <h2 class="section-heading" style="color:var(--cream)">2021–Present</h2>
+    <div style="display:flex; flex-direction:column; gap:0;">
+      <!-- each year -->
+      <div style="display:grid; grid-template-columns:80px 1fr; gap:0 2.5rem; padding:1.75rem 0; border-bottom:1px solid rgba(200,151,74,0.12);">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:rgba(245,240,232,0.2); line-height:1; padding-top:0.1rem;">2021</div>
+        <div style="font-size:0.88rem; color:rgba(245,240,232,0.7); line-height:1.9;">Transitioned from clinical/HR analytics to systems-level transformation at KDHE &nbsp;·&nbsp; Began statewide workforce and data modernization work &nbsp;·&nbsp; Launched statewide QI and Environmental Justice Communities of Practice</div>
+      </div>
+      <div style="display:grid; grid-template-columns:80px 1fr; gap:0 2.5rem; padding:1.75rem 0; border-bottom:1px solid rgba(200,151,74,0.12);">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:rgba(245,240,232,0.2); line-height:1; padding-top:0.1rem;">2022</div>
+        <div style="font-size:0.88rem; color:rgba(245,240,232,0.7); line-height:1.9;">Became Principal Investigator on $64M+ PHIG portfolio &nbsp;·&nbsp; Added CDC COVID-19 Disparities ($31M) and EPA EJ ($1M) grants &nbsp;·&nbsp; Co-designed statewide CLAS and Language Access transformation &nbsp;·&nbsp; Named RWJF/Apolitical Gender Inclusion Learning Exchange Fellow &nbsp;·&nbsp; Recognized as NextGen Under 30, Kansas</div>
+      </div>
+      <div style="display:grid; grid-template-columns:80px 1fr; gap:0 2.5rem; padding:1.75rem 0; border-bottom:1px solid rgba(200,151,74,0.12);">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:rgba(245,240,232,0.2); line-height:1; padding-top:0.1rem;">2023</div>
+        <div style="font-size:0.88rem; color:rgba(245,240,232,0.7); line-height:1.9;">Designed statewide strategic planning and QI frameworks &nbsp;·&nbsp; Led Kansas's first systemwide EJ staff CoP &nbsp;·&nbsp; Presented at Governor's Public Health Conference &nbsp;·&nbsp; Launched Ripple Effect Mapping program &nbsp;·&nbsp; Founded <strong style="color:var(--gold-light)">Stratagem Et Cetera Consulting, LLC</strong> (November 2023)</div>
+      </div>
+      <div style="display:grid; grid-template-columns:80px 1fr; gap:0 2.5rem; padding:1.75rem 0; border-bottom:1px solid rgba(200,151,74,0.12);">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:rgba(245,240,232,0.2); line-height:1; padding-top:0.1rem;">2024</div>
+        <div style="font-size:0.88rem; color:rgba(245,240,232,0.7); line-height:1.9;">National presenter for PHF, ASTHO, NNPHI, HHS, APHA, NACCHO &nbsp;·&nbsp; Ohio Behavioral Health ECHO (200+ professionals) &nbsp;·&nbsp; Ohio SOPHE 10-module PD series (94% satisfaction) &nbsp;·&nbsp; Launched Western Region Training Series Modules 1–3 &nbsp;·&nbsp; Produced rural CHW documentary &nbsp;·&nbsp; YWCA Women of Excellence Honoree &nbsp;·&nbsp; PHF Public Health Consultant role begins</div>
+      </div>
+      <div style="display:grid; grid-template-columns:80px 1fr; gap:0 2.5rem; padding:1.75rem 0;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:rgba(245,240,232,0.2); line-height:1; padding-top:0.1rem;">2025</div>
+        <div style="font-size:0.88rem; color:rgba(245,240,232,0.7); line-height:1.9;">Completed a Northeastern local health department "Health for All" Environmental Scan — adopted by PHF as national model &nbsp;·&nbsp; Delivered Western Region Modules 4–5 and 2-day onsite workshop &nbsp;·&nbsp; ASTHO PHIG Impact Report podcast &nbsp;·&nbsp; UNC Chapel Hill graduate lecturer &nbsp;·&nbsp; Kansas African American Affairs Commissioner appointed &nbsp;·&nbsp; PHIG/RHTP infrastructure alignment framework developed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS & TOOLS -->
+<section style="background:var(--cream); padding:5rem 0;" id="expertise">
+  <div class="container">
+    <div class="section-label">Capabilities</div>
+    <h2 class="section-heading">Skills, Tools<br>&amp; Methods</h2>
+
+    <!-- ROW 1: 4 core skill categories -->
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; margin-bottom:1.25rem;">
+
+      <div style="background:white; border:1px solid rgba(26,107,107,0.15); padding:1.5rem;">
+        <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--teal); margin-bottom:1rem; border-bottom:1px solid rgba(26,107,107,0.15); padding-bottom:0.5rem;">Leadership &amp; Strategy</div>
+        <div style="font-size:0.82rem; color:var(--text); line-height:2.1;">Systems Thinking<br>Strategic Planning<br>Organizational Development<br>Workforce Capacity Building<br>Executive Communication<br>Coalition Building<br>Change Management</div>
+      </div>
+
+      <div style="background:white; border:1px solid rgba(26,107,107,0.15); padding:1.5rem;">
+        <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--teal); margin-bottom:1rem; border-bottom:1px solid rgba(26,107,107,0.15); padding-bottom:0.5rem;">Performance &amp; QI</div>
+        <div style="font-size:0.82rem; color:var(--text); line-height:2.1;">Lean Six Sigma (LSSGB)<br>Root Cause Analysis<br>Fishbone · Pareto · 5 Whys<br>A3 Thinking<br>Performance Dashboards<br>PHAB Accreditation<br>CQI Infrastructure Design</div>
+      </div>
+
+      <div style="background:white; border:1px solid rgba(26,107,107,0.15); padding:1.5rem;">
+        <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--teal); margin-bottom:1rem; border-bottom:1px solid rgba(26,107,107,0.15); padding-bottom:0.5rem;">Curriculum &amp; Training</div>
+        <div style="font-size:0.82rem; color:var(--text); line-height:2.1;">Curriculum Development<br>Adult Learning Design<br>ECHO Model Facilitation<br>Case-Based Learning<br>Scenario Facilitation<br>CoP Leadership<br>Competency-Based Mapping</div>
+      </div>
+
+      <div style="background:white; border:1px solid rgba(26,107,107,0.15); padding:1.5rem;">
+        <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--teal); margin-bottom:1rem; border-bottom:1px solid rgba(26,107,107,0.15); padding-bottom:0.5rem;">Policy &amp; Grant Mgmt</div>
+        <div style="font-size:0.82rem; color:var(--text); line-height:2.1;">Policy Analysis &amp; Development<br>Legislative Engagement<br>Federal Post-Award Admin<br>Multi-Amendment Workplans<br>Subcontract Management<br>Compliance Monitoring<br>Budget Reconciliation</div>
+      </div>
+
+    </div>
+
+    <!-- ROW 2: tools + methods -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.25rem;">
+
+      <!-- TOOLS — navy panel -->
+      <div style="background:var(--navy); padding:2rem;">
+        <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:1.5rem;">Technology &amp; Tools</div>
+
+        <div style="margin-bottom:1.1rem;">
+          <div style="font-family:'Space Mono',monospace; font-size:0.57rem; color:rgba(245,240,232,0.35); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.6rem;">Data &amp; Analytics</div>
+          <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">Power BI</span>
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">Tableau</span>
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">Excel (Advanced)</span>
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">ArcGIS</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom:1.1rem;">
+          <div style="font-family:'Space Mono',monospace; font-size:0.57rem; color:rgba(245,240,232,0.35); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.6rem;">Project &amp; Collaboration</div>
+          <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">Asana</span>
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">Smartsheet</span>
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">Monday.com</span>
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">SharePoint</span>
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">Slack</span>
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">Microsoft Teams</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom:1.1rem;">
+          <div style="font-family:'Space Mono',monospace; font-size:0.57rem; color:rgba(245,240,232,0.35); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.6rem;">Design &amp; Communications</div>
+          <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">Canva</span>
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">Adobe Express</span>
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">PowerPoint (Expert)</span>
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">Google Suite</span>
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">Infinite Painter</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom:1.1rem;">
+          <div style="font-family:'Space Mono',monospace; font-size:0.57rem; color:rgba(245,240,232,0.35); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.6rem;">LMS &amp; Training Platforms</div>
+          <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">TRAIN (National)</span>
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">CloudCME</span>
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">EEDS</span>
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">LinkedIn Learning</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom:1.1rem;">
+          <div style="font-family:'Space Mono',monospace; font-size:0.57rem; color:rgba(245,240,232,0.35); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.6rem;">Federal Grant Systems</div>
+          <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">GrantSolutions</span>
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">PHIVE</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom:1.1rem;">
+          <div style="font-family:'Space Mono',monospace; font-size:0.57rem; color:rgba(245,240,232,0.35); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.6rem;">HR &amp; IT Systems</div>
+          <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">Workday</span>
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">SharePoint</span>
+            <span style="background:rgba(42,144,144,0.18); border:1px solid rgba(42,144,144,0.3); color:var(--teal-light); font-size:0.7rem; padding:0.25rem 0.7rem;">Microsoft 365</span>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-family:'Space Mono',monospace; font-size:0.57rem; color:rgba(245,240,232,0.35); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.6rem;">Currently Learning</div>
+          <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
+            <span style="background:rgba(200,151,74,0.15); border:1px solid rgba(200,151,74,0.25); color:var(--gold-light); font-size:0.7rem; padding:0.25rem 0.7rem;">GitHub</span>
+            <span style="background:rgba(200,151,74,0.15); border:1px solid rgba(200,151,74,0.25); color:var(--gold-light); font-size:0.7rem; padding:0.25rem 0.7rem;">HTML / CSS</span>
+            <span style="background:rgba(200,151,74,0.15); border:1px solid rgba(200,151,74,0.25); color:var(--gold-light); font-size:0.7rem; padding:0.25rem 0.7rem;">Web Development</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- METHODS — white panel -->
+      <div style="background:white; border:1px solid rgba(26,107,107,0.15); padding:2rem;">
+        <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--teal); margin-bottom:1.25rem; border-bottom:1px solid rgba(26,107,107,0.15); padding-bottom:0.5rem;">Methods &amp; Evaluation</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem;">
+          <div>
+            <div style="font-family:'Space Mono',monospace; font-size:0.57rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem;">Assessment</div>
+            <div style="font-size:0.82rem; color:var(--text); line-height:2.1;">Environmental Scans<br>SWOC Analysis<br>PHCMC Maturity Model<br>Workforce Assessments<br>Program Evaluation<br>Logic Models<br>Needs Assessments</div>
+          </div>
+          <div>
+            <div style="font-family:'Space Mono',monospace; font-size:0.57rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem;">Data Methods</div>
+            <div style="font-size:0.82rem; color:var(--text); line-height:2.1;">Ripple Effect Mapping<br>Survey Design &amp; Analysis<br>Qualitative Coding<br>Mixed Methods<br>Data Visualization<br>Narrative Integration<br>Dashboards &amp; Scorecards</div>
+          </div>
+          <div>
+            <div style="font-family:'Space Mono',monospace; font-size:0.57rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem;">Policy</div>
+            <div style="font-size:0.82rem; color:var(--text); line-height:2.1;">Policy Analysis<br>Legislative Testimony<br>Regulatory Review<br>Stakeholder Engagement<br>SHIP/PHAB Alignment<br>Advocacy Strategy<br>Cross-Sector Planning</div>
+          </div>
+          <div>
+            <div style="font-family:'Space Mono',monospace; font-size:0.57rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem;">Curriculum Dev.</div>
+            <div style="font-size:0.82rem; color:var(--text); line-height:2.1;">Instructional Design<br>Microlearning<br>Co-Design Cycles<br>Competency Mapping<br>Scenario Learning<br>Reflective Dialogue<br>Training Evaluation</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- SIGNATURE PROJECTS -->
+<section style="background:var(--warm-white); padding:6rem 0;">
+  <div class="container">
+    <div class="section-label">Signature Work</div>
+    <h2 class="section-heading">Project Portfolio</h2>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
+
+      <!-- OCHD -->
+      <div style="border:1px solid rgba(26,107,107,0.2); background:white; padding:2.5rem;">
+        <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--teal); margin-bottom:0.5rem;">National Model · Northeastern U.S. · May 2024–Feb 2025 (9 months)</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:600; color:var(--navy); margin-bottom:0.25rem;">Northeastern Local Health Department &#8212; Organizational Environmental Scan</div>
+        <div style="font-size:0.8rem; color:var(--muted); margin-bottom:1rem;">Lead Consultant · PHF Partnership · Northeastern U.S.</div>
+        <div style="font-size:0.83rem; color:var(--text); line-height:1.7; margin-bottom:1rem;">Six-month mixed-methods organizational assessment: 12 listening sessions, 40+ staff interviews, 18 internal documents synthesized into an 80-page report and 3-Year Roadmap now adopted as a national model by PHF.</div>
+        <div style="font-family:'Space Mono',monospace; font-size:0.58rem; color:var(--teal); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem;">Deliverables</div>
+        <ul style="list-style:none; padding:0; font-size:0.82rem; color:var(--text); margin-bottom:1rem;">
+          <li style="padding:0.25rem 0; padding-left:1rem; position:relative; border-bottom:1px solid rgba(200,151,74,0.08);"><span style="position:absolute;left:0;color:var(--gold);">&#8594;</span> 80-page Environmental Scan &middot; PHCMC 5-Tier Maturity Model (PHF national standard)</li>
+          <li style="padding:0.25rem 0; padding-left:1rem; position:relative; border-bottom:1px solid rgba(200,151,74,0.08);"><span style="position:absolute;left:0;color:var(--gold);">&#8594;</span> SWOC Analysis across 6 domains &middot; 5-Zone Momentum Map</li>
+          <li style="padding:0.25rem 0; padding-left:1rem; position:relative;"><span style="position:absolute;left:0;color:var(--gold);">&#8594;</span> 3-Year Implementation Roadmap &middot; Staff Workforce Culture Summary</li>
+        </ul>
+        <div style="font-family:'Space Mono',monospace; font-size:0.58rem; color:var(--teal); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem;">Who It Helped</div>
+        <div style="font-size:0.82rem; color:var(--text); margin-bottom:1rem; line-height:1.6;">400+ local health department staff &middot; 14 divisions &middot; Division directors &middot; PHF-affiliated health departments nationally</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">
+          <div style="background:rgba(26,107,107,0.06); padding:0.6rem 0.75rem; font-size:0.78rem; color:var(--navy);">Leadership clarity &#8593; 35% (survey)</div>
+          <div style="background:rgba(26,107,107,0.06); padding:0.6rem 0.75rem; font-size:0.78rem; color:var(--navy);">Adopted by PHF as national model</div>
+        </div>
+      </div>
+
+      <!-- Nevada -->
+      <div style="border:1px solid rgba(26,107,107,0.2); background:white; padding:2.5rem;">
+        <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--teal); margin-bottom:0.5rem;">Curriculum Design · Western Region · Aug 2024&#8211;Mar 2025 (7 months)</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:600; color:var(--navy); margin-bottom:0.25rem;">Western Regional Health Department &#8212; Resilience Training Series</div>
+        <div style="font-size:0.8rem; color:var(--muted); margin-bottom:1rem;">Principal Consultant &amp; Curriculum Architect &middot; 150+ Professionals</div>
+        <div style="font-size:0.83rem; color:var(--text); line-height:1.7; margin-bottom:1rem;">5-module, 6-hour immersive workforce curriculum covering systems thinking, built environment, wildfire recovery, water and trust, and cross-divisional resilience &#8212; with localized case studies for real-world application.</div>
+        <div style="font-family:'Space Mono',monospace; font-size:0.58rem; color:var(--teal); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem;">Deliverables</div>
+        <ul style="list-style:none; padding:0; font-size:0.82rem; color:var(--text); margin-bottom:1rem;">
+          <li style="padding:0.25rem 0; padding-left:1rem; position:relative; border-bottom:1px solid rgba(200,151,74,0.08);"><span style="position:absolute;left:0;color:var(--gold);">&#8594;</span> 5 modules &middot; 80+ slides &middot; 50-page workbook &middot; 4 live sessions (6 hrs)</li>
+          <li style="padding:0.25rem 0; padding-left:1rem; position:relative; border-bottom:1px solid rgba(200,151,74,0.08);"><span style="position:absolute;left:0;color:var(--gold);">&#8594;</span> Case studies: Asthma + Infrastructure &middot; Wildfire Recovery &middot; Water + Trust</li>
+          <li style="padding:0.25rem 0; padding-left:1rem; position:relative;"><span style="position:absolute;left:0;color:var(--gold);">&#8594;</span> PHF Core Competency crosswalk &middot; Full curriculum map for long-term reuse</li>
+        </ul>
+        <div style="font-family:'Space Mono',monospace; font-size:0.58rem; color:var(--teal); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem;">Who It Helped</div>
+        <div style="font-size:0.82rem; color:var(--text); margin-bottom:1rem; line-height:1.6;">150+ public health professionals &middot; Environmental health, clinical, admin, emergency preparedness &middot; Directors needing shared systems language</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">
+          <div style="background:rgba(26,107,107,0.06); padding:0.6rem 0.75rem; font-size:0.78rem; color:var(--navy);">97% satisfaction rate</div>
+          <div style="background:rgba(26,107,107,0.06); padding:0.6rem 0.75rem; font-size:0.78rem; color:var(--navy);">Integrated into regional health dept onboarding</div>
+        </div>
+      </div>
+
+      <!-- Ohio ECHO -->
+      <div style="border:1px solid rgba(26,107,107,0.2); background:white; padding:2.5rem;">
+        <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--teal); margin-bottom:0.5rem;">Cross-Sector Capacity · Ohio · Jan&#8211;Jul 2024 (6 months)</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:600; color:var(--navy); margin-bottom:0.25rem;">Ohio Behavioral Health ECHO Collaborative</div>
+        <div style="font-size:0.8rem; color:var(--muted); margin-bottom:1rem;">Guest Faculty &amp; Systems Design Consultant &middot; OhioMHAS / Behavioral Health ECHO</div>
+        <div style="font-size:0.83rem; color:var(--text); line-height:1.7; margin-bottom:1rem;">6 systems-oriented ECHO sessions bridging behavioral health and public health through QI, trauma-informed workforce resilience, and performance alignment for 200+ professionals statewide.</div>
+        <div style="font-family:'Space Mono',monospace; font-size:0.58rem; color:var(--teal); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem;">Deliverables</div>
+        <ul style="list-style:none; padding:0; font-size:0.82rem; color:var(--text); margin-bottom:1rem;">
+          <li style="padding:0.25rem 0; padding-left:1rem; position:relative; border-bottom:1px solid rgba(200,151,74,0.08);"><span style="position:absolute;left:0;color:var(--gold);">&#8594;</span> 6 ECHO sessions &middot; Trauma-informed workforce resilience toolkit</li>
+          <li style="padding:0.25rem 0; padding-left:1rem; position:relative;"><span style="position:absolute;left:0;color:var(--gold);">&#8594;</span> QI micro-tools &middot; Reflection templates &middot; BH&#8211;PH interface improvement model</li>
+        </ul>
+        <div style="font-family:'Space Mono',monospace; font-size:0.58rem; color:var(--teal); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem;">Who It Helped</div>
+        <div style="font-size:0.82rem; color:var(--text); margin-bottom:1rem; line-height:1.6;">200+ behavioral health clinicians and supervisors across Ohio &middot; Statewide BH workforce needing PH systems integration</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">
+          <div style="background:rgba(26,107,107,0.06); padding:0.6rem 0.75rem; font-size:0.78rem; color:var(--navy);">92% improved systems capability</div>
+          <div style="background:rgba(26,107,107,0.06); padding:0.6rem 0.75rem; font-size:0.78rem; color:var(--navy);">ECHO exemplar for cross-sector work</div>
+        </div>
+      </div>
+
+      <!-- Ohio SOPHE -->
+      <div style="border:1px solid rgba(26,107,107,0.2); background:white; padding:2.5rem;">
+        <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--teal); margin-bottom:0.5rem;">Professional Development · Ohio · Jan&#8211;Oct 2024 (10 months)</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:600; color:var(--navy); margin-bottom:0.25rem;">Ohio SOPHE PD Series &#8212; 10-Module Curriculum</div>
+        <div style="font-size:0.8rem; color:var(--muted); margin-bottom:1rem;">Curriculum Developer &amp; Facilitator &middot; Ohio Society for Public Health Education (Ohio SOPHE)</div>
+        <div style="font-size:0.83rem; color:var(--text); line-height:1.7; margin-bottom:1rem;">10-module accredited professional development series for PH educators, directors, and practitioners aligned to PHF national competency standards. Adopted as a reusable statewide resource.</div>
+        <div style="font-family:'Space Mono',monospace; font-size:0.58rem; color:var(--teal); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem;">Deliverables</div>
+        <ul style="list-style:none; padding:0; font-size:0.82rem; color:var(--text); margin-bottom:1rem;">
+          <li style="padding:0.25rem 0; padding-left:1rem; position:relative; border-bottom:1px solid rgba(200,151,74,0.08);"><span style="position:absolute;left:0;color:var(--gold);">&#8594;</span> 10 modules: Systems Leadership &middot; Decision-Making &middot; Communication &middot; Data Storytelling &middot; Workforce Resilience</li>
+          <li style="padding:0.25rem 0; padding-left:1rem; position:relative;"><span style="position:absolute;left:0;color:var(--gold);">&#8594;</span> Slide decks &middot; Facilitation guides &middot; Scenario exercises &middot; Reflection workbook</li>
+        </ul>
+        <div style="font-family:'Space Mono',monospace; font-size:0.58rem; color:var(--teal); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem;">Who It Helped</div>
+        <div style="font-size:0.82rem; color:var(--text); margin-bottom:1rem; line-height:1.6;">Local public health educators &middot; New directors &middot; Program managers across Ohio</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">
+          <div style="background:rgba(26,107,107,0.06); padding:0.6rem 0.75rem; font-size:0.78rem; color:var(--navy);">94% post-training satisfaction</div>
+          <div style="background:rgba(26,107,107,0.06); padding:0.6rem 0.75rem; font-size:0.78rem; color:var(--navy);">Adopted as accredited statewide resource</div>
+        </div>
+      </div>
+
+      <!-- National TA -->
+      <div style="border:1px solid rgba(26,107,107,0.2); background:white; padding:2.5rem;">
+        <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--teal); margin-bottom:0.5rem;">National TA &amp; Learning · Jan 2023&#8211;Present (2.5+ years)</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:600; color:var(--navy); margin-bottom:0.25rem;">National Facilitation &amp; TA &#8212; PHF, NNPHI, ASTHO, HHS, APHA</div>
+        <div style="font-size:0.8rem; color:var(--muted); margin-bottom:1rem;">National Speaker &amp; Learning Designer &middot; 500+ Professionals &middot; 25+ Engagements</div>
+        <div style="font-size:0.83rem; color:var(--text); line-height:1.7; margin-bottom:1rem;">Recognized national thought leader on systemic public health change through facilitated learning, conference presentations, and podcast features across PHF, NNPHI, ASTHO, HHS, APHA, and NACCHO.</div>
+        <div style="font-family:'Space Mono',monospace; font-size:0.58rem; color:var(--teal); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem;">Key Engagements</div>
+        <ul style="list-style:none; padding:0; font-size:0.82rem; color:var(--text); margin-bottom:1rem;">
+          <li style="padding:0.25rem 0; padding-left:1rem; position:relative; border-bottom:1px solid rgba(200,151,74,0.08);"><span style="position:absolute;left:0;color:var(--gold);">&#8594;</span> APHA 2024 &#8212; AWARE Framework: Equitable Allocation for Rural &amp; Minority Communities</li>
+          <li style="padding:0.25rem 0; padding-left:1rem; position:relative; border-bottom:1px solid rgba(200,151,74,0.08);"><span style="position:absolute;left:0;color:var(--gold);">&#8594;</span> PHF Forum 2024 &#8212; Pathways to Justice (10+ participating states)</li>
+          <li style="padding:0.25rem 0; padding-left:1rem; position:relative; border-bottom:1px solid rgba(200,151,74,0.08);"><span style="position:absolute;left:0;color:var(--gold);">&#8594;</span> NNPHI 2024 &#8212; CommUNITY Synergy (selected as national model)</li>
+          <li style="padding:0.25rem 0; padding-left:1rem; position:relative;"><span style="position:absolute;left:0;color:var(--gold);">&#8594;</span> ASTHO Podcast &middot; HHS CLAS Webinar &middot; NACCHO 360 &middot; Governor's Conference</li>
+        </ul>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">
+          <div style="background:rgba(26,107,107,0.06); padding:0.6rem 0.75rem; font-size:0.78rem; color:var(--navy);">500+ national professionals reached</div>
+          <div style="background:rgba(26,107,107,0.06); padding:0.6rem 0.75rem; font-size:0.78rem; color:var(--navy);">25+ national engagements</div>
+        </div>
+      </div>
+
+      <!-- Documentary & REM -->
+      <div style="border:1px solid rgba(26,107,107,0.2); background:white; padding:2.5rem;">
+        <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--teal); margin-bottom:0.5rem;">Data Storytelling · Kansas &amp; Multi-State · Jun 2023&#8211;Present</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:600; color:var(--navy); margin-bottom:0.25rem;">Community Storytelling &amp; Ripple Effect Mapping</div>
+        <div style="font-size:0.8rem; color:var(--muted); margin-bottom:1rem;">Director &amp; Lead Facilitator &middot; Rural CHW Documentary &middot; 3+ REM Sessions</div>
+        <div style="font-size:0.83rem; color:var(--text); line-height:1.7; margin-bottom:1rem;">REM sessions documenting cascading community outcomes across transportation, food access, and CHW programs &#8212; plus a rural CHW documentary used for statewide advocacy and selected as NNPHI national model.</div>
+        <div style="font-family:'Space Mono',monospace; font-size:0.58rem; color:var(--teal); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem;">Deliverables</div>
+        <ul style="list-style:none; padding:0; font-size:0.82rem; color:var(--text); margin-bottom:1rem;">
+          <li style="padding:0.25rem 0; padding-left:1rem; position:relative; border-bottom:1px solid rgba(200,151,74,0.08);"><span style="position:absolute;left:0;color:var(--gold);">&#8594;</span> Rural CHW mini-documentary &middot; 3 REM impact maps (Transportation &middot; Food Systems &middot; CHW Interpreters)</li>
+          <li style="padding:0.25rem 0; padding-left:1rem; position:relative;"><span style="position:absolute;left:0;color:var(--gold);">&#8594;</span> Policy briefs &middot; Data synthesis visuals &middot; Advocacy narratives for legislators</li>
+        </ul>
+        <div style="font-family:'Space Mono',monospace; font-size:0.58rem; color:var(--teal); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem;">Who It Helped</div>
+        <div style="font-size:0.82rem; color:var(--text); margin-bottom:1rem; line-height:1.6;">State policymakers needing ROI evidence &middot; Rural CHWs &middot; LHDs seeking sustainability funding</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">
+          <div style="background:rgba(26,107,107,0.06); padding:0.6rem 0.75rem; font-size:0.78rem; color:var(--navy);">Selected national model &#8212; NNPHI 2024</div>
+          <div style="background:rgba(26,107,107,0.06); padding:0.6rem 0.75rem; font-size:0.78rem; color:var(--navy);">Used by KDHE for statewide advocacy</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- IMPACT SUMMARY -->
+    <div style="margin-top:3rem; border-top:1px solid rgba(200,151,74,0.2); padding-top:2.5rem;">
+      <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1.5rem;">Portfolio Impact Summary</div>
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1rem;">
+        <div style="background:var(--navy); padding:1.5rem; text-align:center;">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:2.2rem; color:var(--gold-light); font-weight:300;">25+</div>
+          <div style="font-family:'Space Mono',monospace; font-size:0.55rem; color:rgba(245,240,232,0.4); margin-top:0.4rem; letter-spacing:0.08em;">Projects Across 4 States</div>
+        </div>
+        <div style="background:var(--navy); padding:1.5rem; text-align:center;">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:2.2rem; color:var(--gold-light); font-weight:300;">$100M+</div>
+          <div style="font-family:'Space Mono',monospace; font-size:0.55rem; color:rgba(245,240,232,0.4); margin-top:0.4rem; letter-spacing:0.08em;">Funding Managed / Influenced</div>
+        </div>
+        <div style="background:var(--navy); padding:1.5rem; text-align:center;">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:2.2rem; color:var(--gold-light); font-weight:300;">15+</div>
+          <div style="font-family:'Space Mono',monospace; font-size:0.55rem; color:rgba(245,240,232,0.4); margin-top:0.4rem; letter-spacing:0.08em;">Frameworks &amp; Dashboards</div>
+        </div>
+        <div style="background:var(--navy); padding:1.5rem; text-align:center;">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:2.2rem; color:var(--gold-light); font-weight:300;">94&#8211;97%</div>
+          <div style="font-family:'Space Mono',monospace; font-size:0.55rem; color:rgba(245,240,232,0.4); margin-top:0.4rem; letter-spacing:0.08em;">Avg. Satisfaction Rate</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section style="background:var(--cream); padding:6rem 0;" id="testimonials">
+  <div class="container">
+    <div class="section-label">Client Voices</div>
+    <h2 class="section-heading">What Partners<br>Say</h2>
+    <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem;">
+      <div style="background:white; padding:2.5rem; border-left:3px solid var(--gold);">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:300; color:var(--navy); line-height:1.7; margin-bottom:1.25rem; font-style:italic;">"Jade's ability to translate complex ideas into actionable frameworks is unmatched. She guided our team through systems-level change with empathy and precision."</div>
+        <div style="font-family:'Space Mono',monospace; font-size:0.62rem; color:var(--teal); letter-spacing:0.08em;">— Workshop Client, State Health Agency</div>
+      </div>
+      <div style="background:white; padding:2.5rem; border-left:3px solid var(--gold);">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:300; color:var(--navy); line-height:1.7; margin-bottom:1.25rem; font-style:italic;">"Every session felt purposeful, grounded, and deeply human — she redefined how we think about systems work. 97% of our staff said they'd recommend this training immediately."</div>
+        <div style="font-family:'Space Mono',monospace; font-size:0.62rem; color:var(--teal); letter-spacing:0.08em;">— Regional Health Department Workshop Participant</div>
+      </div>
+      <div style="background:white; padding:2.5rem; border-left:3px solid var(--gold);">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:300; color:var(--navy); line-height:1.7; margin-bottom:1.25rem; font-style:italic;">"Her Environmental Scan became the backbone of our department's strategy — it's actionable, visionary, and replicable. We couldn't have moved forward without it."</div>
+        <div style="font-family:'Space Mono',monospace; font-size:0.62rem; color:var(--teal); letter-spacing:0.08em;">— Local Health Department Leadership Team</div>
+      </div>
+      <div style="background:white; padding:2.5rem; border-left:3px solid var(--gold);">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:300; color:var(--navy); line-height:1.7; margin-bottom:1.25rem; font-style:italic;">"The Ohio Behavioral Health ECHO series helped translate big systems ideas into everyday improvement tools. Participants called her facilitation 'transformative.'"</div>
+        <div style="font-family:'Space Mono',monospace; font-size:0.62rem; color:var(--teal); letter-spacing:0.08em;">— Program Director, OhioMHAS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <h2 class="cta-heading">Let's Work Together</h2>
+    <p class="cta-sub">National consulting partnerships, workforce transformation, strategic planning, keynote presentations, and federal grant program support.</p>
+    <div class="cta-buttons">
+      <a href="mailto:jaderamsdell@outlook.com" class="btn btn-primary">Get In Touch</a>
+      <a href="mailto:jaderamsdell@outlook.com" class="btn btn-secondary">Personal Inquiry</a>
+    </div>
+    <p style="margin-top:2rem; font-family:'Space Mono',monospace; font-size:0.62rem; color:rgba(255,255,255,0.5); letter-spacing:0.08em;">
+      Strategic planning &amp; facilitation &nbsp;·&nbsp; Organizational environmental scans &nbsp;·&nbsp; Workforce curriculum design &nbsp;·&nbsp; Federal grant support &nbsp;·&nbsp; Keynote &amp; conference presentations
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Jade Ramsdell, MBA, LSSGB</div>
+  <div class="footer-copy">© 2026 Jade Ramsdell · All rights reserved</div>
+</footer>
+
+<script>
+// Intersection observer for experience items
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 100);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.exp-item').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
